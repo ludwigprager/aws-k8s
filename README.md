@@ -1,6 +1,6 @@
 # Prepare your AWS account
 
-## 1. create two 'roles':
+## 1. create two 'roles'
 In the AWS console create two roles, one for the nodes and one for the master, each with following policies:
 - AmazonEC2FullAccess
 - AmazonS3FullAccess
@@ -10,7 +10,7 @@ This triggers the creation of two 'instance profiles' carrying the same names as
 
 ## 2. create an additional policy
 Create an additional policy to assign the user some minor IAM permissions.
-You can assign it an arbitrary name, e.g. 'kops-additional-policy'. Use the following JSON:
+Give it an arbitrary name. Use the following JSON:
 ~~~
 {
     "Version": "2012-10-17",
