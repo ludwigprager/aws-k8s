@@ -33,20 +33,25 @@ You can assign it an arbitrary name, e.g. 'kops-additional-policy'. Use the foll
 ~~~
 
 ## 3. assign policy to an AWS user
-Assign a user the policy from step 2. and set this user's AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in 'init.sh'
+Assign a user the policy from step 2.
 (or create a group, assign policy to group, assign user to group)
 
 # How to use this container
 Perform steps 1-3. Then, you need to make a few changes to the init.sh script:
 - set the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY of the user mentioned in step 3.
-- set the variables -INSTANCE_PROFILE_NODE and -INSTANCE_PROFILE_MASTER to the instance-profiles' ARNs you created in step 1
+- set the variables
+    -INSTANCE_PROFILE_NODE
+    -INSTANCE_PROFILE_MASTER
+  to the instance-profiles' ARNs you created in step 1
 - choose a unique name for MY_PROJECT since a bucket with that name will be created.
+
+Start the container:
 ~~~
 . init.sh
 k8s $(realpath workdir/)
 ~~~
 
-Then, call start.sh:
+With the container running call:
 ~~~
 ./start.sh
 ~~~
@@ -57,8 +62,9 @@ Wait a few minutes, then try:
 kops validate cluster
 ~~~
 If you get an 'EOF' error you might have to wait a little longer.
+Now, play with your cluster.
 
-Finally, delete all resource with
+Finally, delete all resources with
 ~~~
 ./stop.sh
 ~~~
