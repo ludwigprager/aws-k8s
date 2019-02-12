@@ -22,6 +22,11 @@ kops create cluster \
   --topology private \
   || true
 
+# generate ssh key
+if [ ! -f ./ssh/id_rsa ]; then
+  ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N "" -f ssh/id_rsa
+fi
+
 kops create secret \
   sshpublickey admin \
   -i ./ssh/id_rsa.pub
@@ -35,12 +40,13 @@ aws s3 sync --delete ${KOPS_STATE_STORE} bucket/
 
 # edit cluster in the bucket
 yq w -i bucket/${KOPS_CLUSTER_NAME}/instancegroup/master-us-east-1a \
-  spec.iam.profile ${INSTANCE_PROFILE_1}
+  spec.iam.profile ${INSTANCE_PROFILE_NODE}
 yq w -i bucket/${KOPS_CLUSTER_NAME}/instancegroup/nodes \
-  spec.iam.profile ${INSTANCE_PROFILE_2}
+  spec.iam.profile ${INSTANCE_PROFILE_MASTER}
 
 # update bucket
 aws s3 sync --delete bucket/ ${KOPS_STATE_STORE}
+
 
 kops update cluster  --yes --lifecycle-overrides IAMRole=ExistsAndWarnIfChanges,IAMRolePolicy=ExistsAndWarnIfChanges,IAMInstanceProfileRole=ExistsAndWarnIfChanges
 

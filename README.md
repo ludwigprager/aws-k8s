@@ -1,16 +1,11 @@
 # Prepare your AWS account
 
 ## 1. create two 'roles':
-In the AWS console create two roles with names
-- kops-custom-node-role
-- kops-custom-master-role
-
-each with following policies:
+In the AWS console create two roles, one for the nodes and one for the master, each with following policies:
 - AmazonEC2FullAccess
 - AmazonS3FullAccess
 - AmazonVPCFullAccess
-
-Note, that this leads to the creation of two 'instance profiles' carrying the same name as the 'roles'.
+This triggers the creation of two 'instance profiles' carrying the same names as the 'roles'.
 
 ## 2. create an additional policy
 Create an additional policy to assign the user some minor IAM permissions.
@@ -36,15 +31,15 @@ You can assign it an arbitrary name, e.g. 'kops-additional-policy'. Use the foll
 }
 ~~~
 
-## 3. create user 'kops' 
-and assign this user the 'kops-additional-policy'
-(or create a group 'kops', assign policy to group, assign user 'kops' to group 'kops')
+## 3. assign policy to an AWS user
+Assign a user the policy from step 2. and set this user's AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in 'init.sh'
+(or create a group, assign policy to group, assign user to group)
 
 # How to use this container
 Perform steps 1-3. Then, you need to make a few changes to the init.sh script:
-- set your AWS credentials
-- set the ARNs of the instance-profiles you created in step 1
-- set a unique name for the bucket in workdir/settings.sh
+- set the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY of the user mentioned in step 3.
+- set the variables -INSTANCE_PROFILE_NODE and -INSTANCE_PROFILE_MASTER to the instance-profiles' ARNs you created in step 1
+- choose a unique name for MY_PROJECT since a bucket with that name will be created.
 ~~~
 . init.sh
 k8s $(realpath workdir/)
