@@ -5,6 +5,7 @@ In the AWS console create two roles, one for the nodes and one for the master, e
 - AmazonEC2FullAccess
 - AmazonS3FullAccess
 - AmazonVPCFullAccess
+<a/>
 This triggers the creation of two 'instance profiles' carrying the same names as the 'roles'.
 
 ## 2. create an additional policy
@@ -55,6 +56,7 @@ Wait a few minutes, then try:
 . settings.sh
 kops validate cluster
 ~~~
+If you get an 'EOF' error you might have to wait a little longer.
 
 Finally, delete all resource with
 ~~~
