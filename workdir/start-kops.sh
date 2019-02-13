@@ -12,6 +12,13 @@ aws s3api create-bucket \
   --bucket ${MY_BUCKET} \
   --region ${REGION}
 
+SSH=~/.ssh/
+
+# generate ssh key
+if [ ! -f ${SSH}/id_rsa ]; then
+  ssh-keygen -b 2048 -t rsa -f ${SSH}/id_rsa -q -N ""
+fi
+
 kops create cluster \
   --zones ${ZONE1} \
   --master-size t2.medium \
@@ -22,14 +29,10 @@ kops create cluster \
   --topology private \
   || true
 
-# generate ssh key
-if [ ! -f ~/.ssh/id_rsa ]; then
-  ssh-keygen -b 2048 -t rsa -q -N ""
-fi
 
 kops create secret \
   sshpublickey admin \
-  -i ./ssh/id_rsa.pub
+  -i ${SSH}/id_rsa.pub
 
 kops describe secret  admin
 

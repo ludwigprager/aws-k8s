@@ -21,7 +21,7 @@ docker build -t aws-k8s:1 ${DIR}
 WORKDIR=${DIR}/workdir/
 
 docker run --rm -it \
-  -v ${DIR}/ssh:/root/.ssh:ro \
+  -v ${DIR}/ssh:/root/.ssh:rw \
   -v ${DIR}/kube:/root/.kube:rw \
   -v ${DIR}/helm:/root/.helm:rw \
   -v ${WORKDIR}/:/workdir \
