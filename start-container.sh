@@ -1,17 +1,5 @@
 #!/bin/bash
 
-function k8s() {
-
-	WORKDIR=$1
-
-if [[ -z $WORKDIR  ]]; then
-	echo "missing workdir"
-	echo "example:"
-	echo "k8s ~/work/k8s/terraform-gossip/"
-	return
-fi
-
-# 
 export AWS_ACCESS_KEY_ID="AKIAIXXXXXXXXXXXXXXX"
 export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
@@ -19,16 +7,18 @@ INSTANCE_PROFILE_NODE=arn:aws:iam::xxxxxxxxxxxx:instance-profile/<your node inst
 INSTANCE_PROFILE_MASTER=arn:aws:iam::xxxxxxxxxxxx:instance-profile/<your master instance profile name>
 
 export MY_PROJECT="CHOOSE-UNIQUE-BUCKET-NAME"
+
 #
+# NO CHANGES BEYOND THIS LINE
 
 export AWS_DEFAULT_REGION="us-east-2"
 export AWS_DEFAULT_OUTPUT="JSON"
 
 
-
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 docker build -t aws-k8s:1 ${DIR}
+
+WORKDIR=${DIR}/workdir/
 
 docker run --rm -it \
   -v ${DIR}/ssh:/root/.ssh:ro \
@@ -42,4 +32,3 @@ docker run --rm -it \
   -e INSTANCE_PROFILE_NODE=${INSTANCE_PROFILE_NODE} \
   -e INSTANCE_PROFILE_MASTER=${INSTANCE_PROFILE_MASTER} \
   aws-k8s:1
-}

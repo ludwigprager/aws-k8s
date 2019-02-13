@@ -37,7 +37,7 @@ Assign a user the policy from step 2.
 (or create a group, assign policy to group, assign user to group)
 
 # How to use this container
-Perform steps 1-3. Then, you need to make a few changes to the init.sh script:
+Perform steps 1-3. Then, you need to make a few changes to the start-container.sh script:
 - set the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY of the user mentioned in step 3.
 - set the variables
     -INSTANCE_PROFILE_NODE
@@ -47,13 +47,12 @@ Perform steps 1-3. Then, you need to make a few changes to the init.sh script:
 
 Start the container:
 ~~~
-. init.sh
-k8s $(realpath workdir/)
+./start-container.sh
 ~~~
 
 With the container running call:
 ~~~
-./start.sh
+./start-kops.sh
 ~~~
 
 Wait a few minutes, then try:
@@ -66,5 +65,5 @@ Now, play with your cluster.
 
 Finally, delete all resources with
 ~~~
-./stop.sh
+./stop-kops.sh
 ~~~

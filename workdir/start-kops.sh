@@ -24,7 +24,7 @@ kops create cluster \
 
 # generate ssh key
 if [ ! -f ~/.ssh/id_rsa ]; then
-  ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
+  ssh-keygen -b 2048 -t rsa -q -N ""
 fi
 
 kops create secret \
