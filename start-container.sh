@@ -8,6 +8,9 @@ INSTANCE_PROFILE_MASTER=arn:aws:iam::xxxxxxxxxxxx:instance-profile/<your master 
 
 export MY_PROJECT="CHOOSE-UNIQUE-BUCKET-NAME"
 
+REGION=eu-west-3
+
+
 #
 # NO CHANGES BEYOND THIS LINE
 
@@ -27,5 +30,6 @@ docker run --rm -it \
   -e MY_PROJECT=${MY_PROJECT} \
   -e INSTANCE_PROFILE_NODE=${INSTANCE_PROFILE_NODE} \
   -e INSTANCE_PROFILE_MASTER=${INSTANCE_PROFILE_MASTER} \
+  -e REGION=${REGION} \
   --network host \
   aws-k8s:1
