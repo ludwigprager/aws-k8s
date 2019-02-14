@@ -31,4 +31,5 @@ docker run --rm -it \
   -e MY_PROJECT=${MY_PROJECT} \
   -e INSTANCE_PROFILE_NODE=${INSTANCE_PROFILE_NODE} \
   -e INSTANCE_PROFILE_MASTER=${INSTANCE_PROFILE_MASTER} \
+  --network host \
   aws-k8s:1
