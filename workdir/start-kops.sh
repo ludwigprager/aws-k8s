@@ -9,8 +9,7 @@ set -e
 . settings.sh
 
 aws s3api create-bucket \
-  --bucket ${MY_BUCKET} \
-  --region ${REGION}
+  --bucket ${MY_BUCKET}
 
 SSH=~/.ssh/
 
@@ -42,7 +41,7 @@ kops get ig
 aws s3 sync --delete ${KOPS_STATE_STORE} bucket/
 
 # edit cluster in the bucket
-yq w -i bucket/${KOPS_CLUSTER_NAME}/instancegroup/master-us-east-1a \
+yq w -i bucket/${KOPS_CLUSTER_NAME}/instancegroup/master-${ZONE1} \
   spec.iam.profile ${INSTANCE_PROFILE_NODE}
 yq w -i bucket/${KOPS_CLUSTER_NAME}/instancegroup/nodes \
   spec.iam.profile ${INSTANCE_PROFILE_MASTER}

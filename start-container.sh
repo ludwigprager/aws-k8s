@@ -11,10 +11,6 @@ export MY_PROJECT="CHOOSE-UNIQUE-BUCKET-NAME"
 #
 # NO CHANGES BEYOND THIS LINE
 
-export AWS_DEFAULT_REGION="us-east-2"
-export AWS_DEFAULT_OUTPUT="JSON"
-
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 docker build -t aws-k8s:1 ${DIR}
 
