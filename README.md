@@ -57,7 +57,7 @@ With the container running call:
 
 Wait a few minutes, then try:
 ~~~
-. settings.sh
+. ./settings.sh
 kops validate cluster
 ~~~
 If you get an 'EOF' error you might have to wait a little longer.
