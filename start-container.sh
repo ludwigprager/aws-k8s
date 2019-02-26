@@ -14,6 +14,8 @@ REGION=eu-west-3
 #
 # NO CHANGES BEYOND THIS LINE
 
+set -e
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 docker build -t aws-k8s:1 ${DIR}
 
