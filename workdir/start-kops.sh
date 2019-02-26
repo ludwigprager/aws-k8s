@@ -6,10 +6,14 @@
 
 set -e
 
-. settings.sh
+. ./settings.sh
+
 
 aws s3api create-bucket \
-  --bucket ${MY_BUCKET}
+  --bucket ${MY_BUCKET} \
+  --region ${REGION} \
+  --create-bucket-configuration LocationConstraint=${REGION}
+
 
 SSH=~/.ssh/
 
