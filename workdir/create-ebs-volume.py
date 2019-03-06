@@ -17,7 +17,7 @@ tags = [{
                         }
                     ],
        } ]
-response = ec2.create_volume(Size=1, VolumeType='gp2', AvailabilityZone=ZONE1, TagSpecifications=tags) 
+response = ec2.create_volume(Size=5, VolumeType='gp2', AvailabilityZone=ZONE1, TagSpecifications=tags) 
 
 id = response['VolumeId']
 print id

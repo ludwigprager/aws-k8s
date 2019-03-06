@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +e
+
 . ./settings.sh
 
 PORT=8123
