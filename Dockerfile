@@ -10,7 +10,7 @@ ENV HELM_VERSION=v2.13.0
 RUN apk --no-cache update \
   && apk --no-cache add ca-certificates python py-pip py-setuptools groff less \
   && apk --no-cache add --virtual build-dependencies curl \
-  && pip --no-cache-dir install awscli
+  && pip --no-cache-dir install awscli boto3
 
 RUN curl -LO --silent --show-error https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 \
   && mv kops-linux-amd64 /usr/local/bin/kops
