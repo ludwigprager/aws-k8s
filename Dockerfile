@@ -1,5 +1,7 @@
 FROM alpine:3.9
 
+LABEL maintainer="ludwig.prager@celp.de"
+
 ENV KOPS_VERSION=1.11.0
 # https://kubernetes.io/docs/tasks/kubectl/install/
 # latest stable kubectl: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
@@ -37,5 +39,6 @@ RUN chmod +x yq_linux_amd64
 RUN mv yq_linux_amd64 /usr/local/bin/yq
 
 
+EXPOSE 15000/TCP
 
 CMD ["/bin/sh"]

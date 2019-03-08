@@ -16,6 +16,8 @@ docker build -t aws-k8s:1 ${DIR}
 
 WORKDIR=${DIR}/workdir/
 
+# forward port 15000 -> 15000 for tagging docker images
+
 docker run --rm -it \
   -v ${DIR}/ssh:/root/.ssh:rw \
   -v ${DIR}/kube:/root/.kube:rw \
@@ -28,5 +30,6 @@ docker run --rm -it \
   -e INSTANCE_PROFILE_NODE=${INSTANCE_PROFILE_NODE} \
   -e INSTANCE_PROFILE_MASTER=${INSTANCE_PROFILE_MASTER} \
   -e REGION=${REGION} \
+  -p 15000:15000/tcp \
   --network host \
   aws-k8s:1
