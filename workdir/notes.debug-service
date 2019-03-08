@@ -1,0 +1,39 @@
+registry urls
+
+https://robertbrem.github.io/Microservices_with_Kubernetes/03_Docker_registry/01_Setup_a_docker_registry/
+https://docs.docker.com/registry/deploying/
+https://medium.com/@jmarhee/in-cluster-docker-registry-with-tls-on-kubernetes-758eecfe8254
+
+debug service:
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/
+
+kubectl run -it --rm --restart=Never busybox --image=busybox sh
+kubectl get svc registry
+kubectl expose deployment registry --port=80 --target-port=5000
+nslookup registry
+nslookup registry.default
+nslookup registry.default.svc.cluster.local
+kubectl cluster-info
+
+
+https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/
+
+cat <<EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: default
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.28
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+  restartPolicy: Always
+EOF
+
+kubectl exec -ti busybox -- nslookup kubernetes.default
+kubectl exec busybox cat /etc/resolv.conf

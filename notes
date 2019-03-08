@@ -1,8 +1,0 @@
-registry urls
-
-https://robertbrem.github.io/Microservices_with_Kubernetes/03_Docker_registry/01_Setup_a_docker_registry/
-https://docs.docker.com/registry/deploying/
-https://medium.com/@jmarhee/in-cluster-docker-registry-with-tls-on-kubernetes-758eecfe8254
-
-debug service:
-https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/

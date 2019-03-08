@@ -22,6 +22,7 @@ if [ ! -f ${SSH}/id_rsa ]; then
   ssh-keygen -b 2048 -t rsa -f ${SSH}/id_rsa -q -N ""
 fi
 
+# -- bastion for ssh to master (needs '--topology private')
 kops create cluster \
   --zones ${ZONE1} \
   --master-size t2.medium \
@@ -59,3 +60,8 @@ kops update cluster  --yes --lifecycle-overrides IAMRole=ExistsAndWarnIfChanges,
 echo wait some time before validating cluster with command:
 echo
 echo kops validate cluster
+
+echo
+# https://github.com/kubernetes/kops/blob/master/docs/examples/kops-tests-private-net-bastion-host.md#adding-a-bastion-host-to-our-cluster
+#echo kops create instancegroup bastions --role Bastion --subnet utility-${ZONE1}a 
+

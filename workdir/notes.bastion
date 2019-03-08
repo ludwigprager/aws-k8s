@@ -1,0 +1,13 @@
+# https://github.com/kubernetes/kops/issues/2881
+# https://github.com/kubernetes/kops/blob/master/docs/examples/kops-tests-private-net-bastion-host.md#adding-a-bastion-host-to-our-cluster
+
+# -- bastion for ssh to master (needs '--topology private')
+
+kops create instancegroup bastions --role Bastion --subnet utility-${ZONE1}a 
+
+kops update cluster  --yes --lifecycle-overrides IAMRole=ExistsAndWarnIfChanges,IAMRolePolicy=ExistsAndWarnIfChanges,IAMInstanceProfileRole=ExistsAndWarnIfChanges
+
+need new role
+INSTANCE_PROFILE_BASTION
+
+edit ig as before

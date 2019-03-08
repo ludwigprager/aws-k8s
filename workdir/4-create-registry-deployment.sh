@@ -4,6 +4,7 @@ set -e
 
 VOL_ID=$(./get-volume-id.py)
 
+# containerPort: port the container listen on
 
 cat <<EOF | kubectl create -f -
 ---
