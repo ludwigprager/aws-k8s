@@ -35,3 +35,13 @@ spec:
           volumeID: ${VOL_ID}
           fsType: ext4
 EOF
+
+# forward localhost:5123 to registry-pod:5000
+: '
+# get pod name
+POD=$( kubectl get pod -l name=registry | sed -n 2p | awk '{print $1}' )
+kubectl port-forward ${POD} 5123:5000&
+# test with curl
+curl localhost:5124
+'
+
