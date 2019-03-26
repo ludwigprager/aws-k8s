@@ -12,7 +12,7 @@ REGION=eu-west-3
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-docker build -t aws-k8s:1 ${DIR}
+docker build -t ludwigprager/aws-k8s:1 ${DIR}
 
 WORKDIR=${DIR}/workdir/
 
@@ -32,4 +32,4 @@ docker run --rm -it \
   -e REGION=${REGION} \
   -p 15000:15000/tcp \
   --network host \
-  aws-k8s:1
+  ludwigprager/aws-k8s:1

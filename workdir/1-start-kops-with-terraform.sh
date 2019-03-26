@@ -60,7 +60,7 @@ kops update cluster \
   --yes \
   --out=./ --target=terraform
 
-
+terraform graph | dot -Tsvg > graph.svg
 
 terraform init
 terraform apply -auto-approve
