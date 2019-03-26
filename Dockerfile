@@ -10,6 +10,7 @@ ENV TERRAFORM_VERSION=0.11.7
 ENV HELM_VERSION=v2.13.0
 
 RUN apk --no-cache update \
+  && apk add graphviz \
   && apk --no-cache add ca-certificates python py-pip py-setuptools groff less \
   && apk --no-cache add --virtual build-dependencies curl \
   && pip --no-cache-dir install awscli boto3
