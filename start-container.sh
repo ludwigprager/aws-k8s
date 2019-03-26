@@ -1,7 +1,12 @@
 #!/bin/bash
 
+export AWS_ACCESS_KEY_ID="AKIAIXXXXXXXXXXXXXXX"
+export AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
-export MY_PROJECT="registry-test-ml"
+INSTANCE_PROFILE_NODE=arn:aws:iam::xxxxxxxxxxxx:instance-profile/<your node instance profile name>
+INSTANCE_PROFILE_MASTER=arn:aws:iam::xxxxxxxxxxxx:instance-profile/<your master instance profile name>
+
+export MY_PROJECT="CHOOSE-UNIQUE-BUCKET-NAME"
 
 REGION=eu-west-3
 

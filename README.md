@@ -52,7 +52,7 @@ Start the container:
 
 With the container running call:
 ~~~
-./start-kops.sh
+./1-start-kops.sh
 ~~~
 
 Wait a few minutes, then try:
