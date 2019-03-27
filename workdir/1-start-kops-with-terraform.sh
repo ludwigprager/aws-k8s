@@ -60,9 +60,9 @@ kops update cluster \
   --yes \
   --out=./ --target=terraform
 
-terraform graph | dot -Tsvg > graph.svg
 
 terraform init
+terraform graph | dot -Tsvg > graph.svg
 terraform apply -auto-approve
 
 # now once more because of https://github.com/kubernetes/kops/issues/2990
