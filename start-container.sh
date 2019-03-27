@@ -24,6 +24,7 @@ WORKDIR=${DIR}/workdir/
 # forward port 15000 -> 15000 for tagging docker images
 
 docker run --rm -it \
+  --user 1000 \
   -v ${DIR}/ssh:/root/.ssh:rw \
   -v ${DIR}/kube:/root/.kube:rw \
   -v ${DIR}/helm:/root/.helm:rw \

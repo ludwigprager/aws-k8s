@@ -39,7 +39,10 @@ RUN curl -LO https://github.com/mikefarah/yq/releases/download/2.2.1/yq_linux_am
 RUN chmod +x yq_linux_amd64
 RUN mv yq_linux_amd64 /usr/local/bin/yq
 
-
 EXPOSE 15000/TCP
 
-CMD ["/bin/sh"]
+RUN adduser k8s  -D -u 1000
+USER k8s
+COPY bashrc /home/k8s/.bashrc
+
+CMD ["/bin/bash"]
