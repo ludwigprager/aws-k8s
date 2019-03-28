@@ -31,7 +31,7 @@ kops create cluster \
   --node-size t2.medium \
   --node-count 1 \
   --networking calico \
-  --topology private \
+  --topology public \
   || true
 
 

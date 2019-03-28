@@ -1,0 +1,1 @@
+source /workdir/settings.sh
